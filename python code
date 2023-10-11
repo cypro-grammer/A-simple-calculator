@@ -1,0 +1,66 @@
+def add (x,y):
+    return x+y
+def substract (x, y):
+    return x-y
+def multiply(x,y):
+    return x*y
+def divide(x, y):
+    return x/y
+def check_if_user_has_finished():
+    ok_to_finish=True
+    user_input_accepted=False
+    while not user_input_accepted:
+        user_input=input('Do you wish to finish (y/n): ')
+        if user_input=='y':
+            user_input_accepted=True
+        elif user_input=='n':
+            ok_to_finish=False
+            user_input_accepted=True
+        else:
+            print('Response must be y/n, please try again')
+def get_operation_choice():
+    input_ok=False
+    while not input_ok:
+        print('The menu options are: ')
+        print('1-Add')
+        print('2-Subtract')
+        print('3-Multiply')
+        print('4-Divide')
+        print('-------------------------')
+        user_selection=input('Please make a selection: ')
+        if user_selection in ('1', '2','3', '4'):
+            input_ok=True
+        else:
+            print('Invalid Input (must be in range of 1 to 4)')
+    print('----------------')
+    return user_selection
+def get_numbers_from_user():
+    number1=get_integer_input('Input the first number: ')
+    number2=get_integer_input('Input the second number: ')
+    return number1, number2
+def get_integer_input(message):
+    value_as_string=input(message)
+    while not value_as_string.isnumeric():
+        print('The input must be an integer')
+        value_as_string=input(message)
+    return int(value_as_string)
+
+finished=False
+while not finished:
+    result=0
+    menu_choice=get_operation_choice()
+    n1, n2=get_numbers_from_user()
+    if menu_choice=='1':
+        result=add (n1, n2)
+    elif menu_choice=='2':
+        result=substract(n1,n2)
+    elif menu_choice=='3':
+        result=multiply(n1,n2)
+    elif menu_choice=='4':
+        result=divide(n1,n2)
+    print('Result: ', result)
+    print('----------------')
+    finished=check_if_user_has_finished()
+
+print('Goodbye')
+
